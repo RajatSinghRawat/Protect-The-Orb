@@ -3,6 +3,13 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private float projectileSpeed;
+    [SerializeField] private float damage;
+
+    //getters
+    public float GetDamage()
+    {
+        return damage;
+    }
 
     //settters
     public void SetprojectileSpeed(float speed)
