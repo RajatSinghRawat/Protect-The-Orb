@@ -41,7 +41,7 @@ public class BarrelController : MonoBehaviour
     private void GetPlayerInput()
     {
        mousePosition = Input.mousePosition;
-       if (Input.GetKeyDown(ButtonForShooting) && shootTimer >= shootRate)
+       if (Input.GetKey(ButtonForShooting) && shootTimer >= shootRate)
        {
             Shoot();
             shootTimer = 0f;
