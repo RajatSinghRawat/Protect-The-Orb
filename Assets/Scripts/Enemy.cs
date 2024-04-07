@@ -7,6 +7,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private float healthDecreaseRate;
     [SerializeField] private float speed;
+    private Animator enemyAnimator;
+
+
+    private void Start()
+    {
+        enemyAnimator = GetComponent<Animator> ();
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -31,6 +39,7 @@ public class Enemy : MonoBehaviour
 
     private void startAttack(Orb lightOrb)
     {
+        enemyAnimator.SetBool("Attack", true);
         StartCoroutine(AttackLightOrb(lightOrb));      
     }
 
