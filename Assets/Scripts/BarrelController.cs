@@ -4,15 +4,13 @@ public class BarrelController : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private GameObject projectilePrefab;
-    //[SerializeField] private float projectileSpeed = 10f;
     [SerializeField] private KeyCode ButtonForShooting;
     [SerializeField] private Transform spawnPosition;
     // Time between shots in seconds
     [SerializeField] private float shootRate = 0.5f;
     [SerializeField] private float projectileSpeed;
     private float shootTimer = 0f;
-    private Vector3 mousePosition;
-    
+    private Vector3 mousePosition;  
 
     void Update()
     {

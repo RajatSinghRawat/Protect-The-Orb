@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2796912092007912}
   - component: {fileID: -952446398334597612}
   - component: {fileID: 6851873897841600447}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Yellow_Spider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,6 +104,7 @@ MonoBehaviour:
   damage: 8
   healthDecreaseRate: 8
   speed: 0.07
+  typeOfEnemy: 4
 --- !u!70 &2796912092007912
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

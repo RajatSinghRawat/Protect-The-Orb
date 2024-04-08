@@ -3,6 +3,7 @@ using UnityEngine;
 public class Orb : MonoBehaviour
 {
     [SerializeField] private float OrbHealth;
+    [SerializeField] private ScoreManager scoreManagerController;
     private SpriteRenderer objectColor; 
 
     private void Start()
@@ -19,7 +20,7 @@ public class Orb : MonoBehaviour
         OrbHealth -= damageValue / 500f;
         if (!CheckIfAlive())
         {
-            Destroy(gameObject);
+            Time.timeScale = 0f;
         }
     }
 
