@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6969602047105376293}
   - component: {fileID: 980876769146056439}
   - component: {fileID: 6052567667648073}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Blue_Striped_Spider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,6 +104,7 @@ MonoBehaviour:
   damage: 2
   healthDecreaseRate: 4
   speed: 0.4
+  typeOfEnemy: 0
 --- !u!70 &6969602047105376293
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

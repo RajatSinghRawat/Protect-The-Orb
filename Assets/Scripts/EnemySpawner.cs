@@ -13,6 +13,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float minimumAssignedTime; 
     [SerializeField] private float maximumAssignedTime;
     [SerializeField] private float waitTimeForTimeDecreaser;
+    [SerializeField] private ScoreManager scoreManagerController;
     private Vector3 randomPosition;
     private float pointOfFixedAxis;
     private float minimumPointOfVariableAxis, maximumPointOfVariableAxis;
@@ -30,6 +31,7 @@ public class EnemySpawner : MonoBehaviour
     {  
         return minimumPointOfVariableAxis; 
     }
+
     public float getMaximumPointOfVariableAxis() 
     { 
         return maximumPointOfVariableAxis; 
@@ -143,13 +145,10 @@ public class EnemySpawner : MonoBehaviour
     public void spawnEnemy()
     {
         PickRandomPosition(SpawningRegion);
-        GameObject spawnedEnemy = Instantiate(enemies[enemy].gameObject);
-        spawnedEnemy.transform.position = randomPosition;
-        Vector2 direction = (spawnedEnemy.transform.position - Orb.transform.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        // Create a rotation based on the calculated angle
-        Quaternion rotation = Quaternion.AngleAxis(angle + offSet, Vector3.forward);
-        spawnedEnemy.transform.rotation = rotation;
+        Enemy spawnedEnemy = Instantiate(enemies[enemy]);
+        Vector2 direction = (randomPosition - Orb.transform.position).normalized;
+        spawnedEnemy.SetTransform(randomPosition, direction, offSet);
+        spawnedEnemy.SetScoreManagerReference(scoreManagerController);
         StartSpawning();
     }
 

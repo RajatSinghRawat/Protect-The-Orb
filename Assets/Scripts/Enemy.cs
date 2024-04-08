@@ -7,19 +7,39 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private float healthDecreaseRate;
     [SerializeField] private float speed;
+    [SerializeField] private EnemyType typeOfEnemy;
+    private ScoreManager scoreManagerController;
     private Animator enemyAnimator;
 
+    //getters
+    public EnemyType GetTypeOfEnemy()
+    {
+        return typeOfEnemy;
+    }
 
     private void Start()
     {
-        enemyAnimator = GetComponent<Animator> ();
+        enemyAnimator = GetComponent<Animator>();
     }
 
+    public void SetTransform(Vector2 EnemyPosition, Vector2 EnemyDirection, float RotationOffset)
+    {
+        gameObject.transform.position = EnemyPosition;
+        float angle = Mathf.Atan2(EnemyDirection.y, EnemyDirection.x) * Mathf.Rad2Deg;
+        // Create a rotation based on the calculated angle
+        Quaternion rotation = Quaternion.AngleAxis(angle + RotationOffset, Vector3.forward);
+        gameObject.transform.rotation = rotation;
+    }
 
     // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector2.up * speed * Time.deltaTime);
+    }
+
+    public void SetScoreManagerReference(ScoreManager scoreManagerObject)
+    {
+      scoreManagerController = scoreManagerObject.GetComponent<ScoreManager>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -56,8 +76,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                GameManager.Instance.RemoveOneEnemy();
-                Destroy(gameObject);
+                KillEnemy();
             }
         }        
     }
@@ -73,8 +92,7 @@ public class Enemy : MonoBehaviour
         health -= damageValue;
         if (!CheckIfAlive())
         {
-            GameManager.Instance.RemoveOneEnemy();
-            Destroy(gameObject);
+            KillEnemy();
         }
     }
 
@@ -85,5 +103,21 @@ public class Enemy : MonoBehaviour
             return false;
         }
         return true;
-    }   
+    } 
+    
+    private void KillEnemy()
+    {
+        GameManager.Instance.RemoveOneEnemy();
+        scoreManagerController.increaseScore(typeOfEnemy);
+        Destroy(gameObject);
+    }
+}
+
+public enum EnemyType
+{
+    Blue_Striped_Spider,
+    BlueWithOrangeSpots_Spider,
+    Gray_Spider,
+    Red_Spider,
+    Yellow_Spider
 }
