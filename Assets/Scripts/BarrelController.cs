@@ -9,6 +9,8 @@ public class BarrelController : MonoBehaviour
     // Time between shots in seconds
     [SerializeField] private float shootRate = 0.5f;
     [SerializeField] private float projectileSpeed;
+    [SerializeField] private KeyCode PauseGameButton;
+    [SerializeField] private UIManager UIManagerController;
     private float shootTimer = 0f;
     private Vector3 mousePosition;  
 
@@ -17,6 +19,7 @@ public class BarrelController : MonoBehaviour
         BarrelRotation();
         GetPlayerInput();
         shootTimer += Time.deltaTime;
+        PauseGame();
     }
 
     private void BarrelRotation()
@@ -44,6 +47,16 @@ public class BarrelController : MonoBehaviour
             Shoot();
             shootTimer = 0f;
        }            
+    }
+
+    private void PauseGame()
+    {
+        if(Input.GetKeyDown(PauseGameButton))
+        {
+            Time.timeScale = 0f;
+            UIManagerController.setPauseScreenActive();
+            this.enabled = false;
+        }
     }
 }
 

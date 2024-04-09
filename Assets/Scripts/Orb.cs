@@ -3,11 +3,15 @@ using UnityEngine;
 public class Orb : MonoBehaviour
 {
     [SerializeField] private float OrbHealth;
-    [SerializeField] private ScoreManager scoreManagerController;
+    [SerializeField] private UIManager UIManagerController;
     private SpriteRenderer objectColor; 
 
     private void Start()
     {
+        if(Time.timeScale == 0f)
+        {
+            Time.timeScale = 1f;
+        }
         objectColor = GetComponent<SpriteRenderer>();
         OrbHealth = objectColor.color.a;
     }
@@ -21,6 +25,7 @@ public class Orb : MonoBehaviour
         if (!CheckIfAlive())
         {
             Time.timeScale = 0f;
+            UIManagerController.setGameOverScreenActive();
         }
     }
 

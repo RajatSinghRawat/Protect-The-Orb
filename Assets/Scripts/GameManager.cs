@@ -41,4 +41,9 @@ public class GameManager : MonoBehaviour
     {
         numberOfEnemies--;
     }
+    
+    public void ResetNumberOfEnemies()
+    {
+        numberOfEnemies = 0; 
+    }
 }
