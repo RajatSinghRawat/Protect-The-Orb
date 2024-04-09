@@ -9,3 +9,7 @@ Protect-The-Orb is a 2d game in which the Player has to protect the Light Orb fr
 4) Shooting from Barrel through Left-Mouse click.
 5) Orb's Light dims down when Orb's health goes down.
 6) Has Game_Over_Screen, Pause_Game_Screen and Main_Menu_Screen.
+
+
+https://github.com/RajatSinghRawat/Protect-The-Orb/assets/43318785/a6d53ee5-a917-4a4f-ba66-4a2b314922cf
+
