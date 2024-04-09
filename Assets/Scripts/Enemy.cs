@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemyType typeOfEnemy;
     private ScoreManager scoreManagerController;
     private Animator enemyAnimator;
+    private bool isAttacked;
 
     //getters
     public EnemyType GetTypeOfEnemy()
@@ -76,7 +77,8 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                KillEnemy();
+                isAttacked = false;
+                KillEnemy(isAttacked);
             }
         }        
     }
@@ -92,7 +94,8 @@ public class Enemy : MonoBehaviour
         health -= damageValue;
         if (!CheckIfAlive())
         {
-            KillEnemy();
+            isAttacked = true;
+            KillEnemy(isAttacked);
         }
     }
 
@@ -105,10 +108,13 @@ public class Enemy : MonoBehaviour
         return true;
     } 
     
-    private void KillEnemy()
+    private void KillEnemy(bool gotAttacked)
     {
         GameManager.Instance.RemoveOneEnemy();
-        scoreManagerController.increaseScore(typeOfEnemy);
+        if (gotAttacked)
+        {
+            scoreManagerController.increaseScore(typeOfEnemy);
+        }        
         Destroy(gameObject);
     }
 }
